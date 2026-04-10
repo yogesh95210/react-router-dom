@@ -1,24 +1,24 @@
+import { Navigate, RouterProvider ,createBrowserRouter} from 'react-router-dom';
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './components/Home'
-import Contact from './components/Contact'
+import DashBoardLayOut from './Layout/DashBoardLayOut';
+import Profile from './components/Profile';
+import Setting from './components/Setting';
 function App() {
-    const router = createBrowserRouter([
-      {
-        path: '/home',
-        element: <Home/>
-      },
-      {
-        path: '/contact',
-        element: <Contact/>
-      }
-    ])
+   
+  const router = createBrowserRouter([
+{
+  path : "/dashboard",
+  element: <DashBoardLayOut />,
+  children: [
+    {index: true, element: <Navigate to="profile" />},
+    {path: "profile", element: <Profile />},
+    {path: "setting", element: <Setting />},
+  ]
+}
+  ])
   return (
-    <>
-    <h1>React Router</h1>
     <RouterProvider router={router} />
-    </>
-  )
+    )
 }
 
 export default App
